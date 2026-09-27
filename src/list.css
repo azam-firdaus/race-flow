@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: #14161a;
+  color: #f4f4f4;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 24px;
+}
+
+#marathon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.marathon-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #1e2128;
+  border: 1px solid #2b2f38;
+  border-radius: 10px;
+  padding: 16px 18px;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.marathon-card:hover {
+  border-color: #e63946;
+  transform: translateY(-1px);
+}
+
+.marathon-name {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.marathon-meta {
+  display: flex;
+  gap: 14px;
+  font-size: 13px;
+  color: #9aa0ab;
+}
+
+.empty,
+.error {
+  color: #9aa0ab;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.error {
+  color: #ff8fa3;
+}
+
+code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}

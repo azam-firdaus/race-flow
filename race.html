@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marathon Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.5.0/maplibre-gl.min.css" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <a id="back-link" href="/">&larr; All marathons</a>
+    <div id="race-title"></div>
+
+    <div id="top-right-panels">
+      <div id="runner-info-panel" hidden>
+        <div id="runner-info-name">—</div>
+        <div id="runner-info-bib">—</div>
+        <div class="runner-info-row"><span>Distance</span><span id="runner-info-distance">—</span></div>
+        <div class="runner-info-row"><span>Pace</span><span id="runner-info-pace">—</span></div>
+      </div>
+      <div id="leaderboard-panel" hidden>
+        <div id="leaderboard-title">Leaderboard</div>
+        <div id="leaderboard-list"></div>
+      </div>
+    </div>
+
+    <div id="panel">
+      <div id="panel-header">
+        <div id="race-clock">--:--:--</div>
+        <button type="button" id="panel-toggle" title="Minimize">&minus;</button>
+      </div>
+
+      <div id="panel-body">
+        <input id="scrub" type="range" min="0" max="1000" value="0" />
+
+        <div id="controls">
+          <button id="play-pause">Pause</button>
+          <label>
+            Speed
+            <select id="speed">
+              <option value="100">100x</option>
+              <option value="150">150x</option>
+              <option value="200">200x</option>
+              <option value="300">300x</option>
+              <option value="400">400x</option>
+              <option value="600" selected>600x</option>
+              <option value="800">800x</option>
+              <option value="1000">1000x</option>
+              <option value="1500">1500x</option>
+              <option value="2000">2000x</option>
+            </select>
+          </label>
+          <span id="runner-count"></span>
+        </div>
+
+        <form id="search-form" autocomplete="off">
+          <input id="bib-input" type="text" placeholder="Find bib number..." inputmode="numeric" />
+          <button type="submit">Find</button>
+          <button type="button" id="clear-highlight" hidden>Clear all</button>
+        </form>
+        <div id="search-status"></div>
+
+        <div id="options">
+          <label id="follow-label" hidden>
+            <input id="follow-toggle" type="checkbox" />
+            Follow
+          </label>
+          <label>
+            Map
+            <select id="map-style">
+              <option value="standard" selected>Standard</option>
+              <option value="dark">Dark</option>
+              <option value="grayscale">Grayscale</option>
+              <option value="sepia">Sepia</option>
+            </select>
+          </label>
+          <label>
+            Tint
+            <input id="map-hue" type="range" min="0" max="360" value="0" />
+          </label>
+          <button type="button" id="customize-toggle">Customize</button>
+        </div>
+
+        <div id="customize-panel" hidden>
+          <div class="customize-group">
+            <span class="customize-label">Dot</span>
+            <input id="dot-color" type="color" value="#e63946" title="Dot color" />
+            <label class="customize-slider">Size <input id="dot-size" type="range" min="2" max="20" value="5" /></label>
+            <label class="customize-slider">Opacity <input id="dot-opacity" type="range" min="0" max="100" value="100" /></label>
+          </div>
+          <div class="customize-group">
+            <span class="customize-label">Path</span>
+            <input id="path-color" type="color" value="#e63946" title="Path color" />
+            <label class="customize-slider">Width <input id="path-width" type="range" min="1" max="12" value="4" /></label>
+            <label class="customize-slider">Opacity <input id="path-opacity" type="range" min="0" max="100" value="85" /></label>
+          </div>
+          <div class="customize-group">
+            <span class="customize-label">Map</span>
+            <label class="customize-slider">Opacity <input id="map-opacity" type="range" min="10" max="100" value="100" /></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

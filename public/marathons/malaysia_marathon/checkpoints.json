@@ -1,0 +1,37 @@
+[
+    {
+        "id": "0",
+        "name": "Start",
+        "distanceKm": 0
+    },
+    {
+        "id": "2.04",
+        "name": "2.04 km",
+        "distanceKm": 2.04
+    },
+    {
+        "id": "3.3",
+        "name": "3.3 km",
+        "distanceKm": 3.3
+    },
+    {
+        "id": "5.02",
+        "name": "5.02 km",
+        "distanceKm": 5.02
+    },
+    {
+        "id": "7.31",
+        "name": "7.31 km",
+        "distanceKm": 7.31
+    },
+    {
+        "id": "9.64",
+        "name": "9.64 km",
+        "distanceKm": 9.64
+    },
+    {
+        "id": "10.25",
+        "name": "10.25 km",
+        "distanceKm": 10.25
+    }
+]

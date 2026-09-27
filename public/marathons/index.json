@@ -1,0 +1,30 @@
+[
+    {
+        "id": "pbim_2025",
+        "name": "Penang Bridge International Marathon (2025)",
+        "location": "Pulau Pinang, Malaysia",
+        "date": "2025-12-14",
+        "raceStartTimeMs": 1765652400000
+    },
+    {
+        "id": "twincity_marathon",
+        "name": "Twincity Marathon",
+        "location": "Putrajaya, Malaysia",
+        "date": "2026-01-18",
+        "raceStartTimeMs": 1768680000000
+    },
+    {
+        "id": "score_marathon",
+        "name": "SCORE Marathon",
+        "location": "Putrajaya, Malaysia",
+        "date": "2026-07-19",
+        "raceStartTimeMs": 1784395800000
+    },
+    {
+        "id": "malaysia_marathon",
+        "name": "Malaysia Marathon",
+        "location": "Kuala Lumpur, Malaysia",
+        "date": "2026-08-30",
+        "raceStartTimeMs": 1788031800000
+    }
+]

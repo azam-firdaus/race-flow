@@ -1,0 +1,341 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+#map {
+  position: absolute;
+  inset: 0;
+}
+
+#back-link {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 5;
+  background: rgba(20, 22, 26, 0.85);
+  color: #f4f4f4;
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+}
+
+#back-link:hover {
+  color: #ffd60a;
+}
+
+#race-title {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  background: rgba(20, 22, 26, 0.85);
+  color: #f4f4f4;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+}
+
+#panel {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  right: 16px;
+  max-width: 520px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: rgba(20, 22, 26, 0.85);
+  backdrop-filter: blur(6px);
+  color: #f4f4f4;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+#race-clock {
+  font-variant-numeric: tabular-nums;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+#scrub {
+  width: 100%;
+  accent-color: #e63946;
+  margin-bottom: 10px;
+}
+
+#controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+}
+
+#controls button {
+  background: #e63946;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#controls button:hover {
+  background: #d62839;
+}
+
+#controls select {
+  margin-left: 6px;
+}
+
+#runner-count {
+  margin-left: auto;
+  color: #b7bac0;
+}
+
+#search-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#search-form input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: #f4f4f4;
+  font-size: 14px;
+}
+
+#search-form button {
+  background: #444a55;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#search-form button[type="submit"] {
+  background: #ffd60a;
+  color: #23262e;
+  font-weight: 600;
+}
+
+#search-status {
+  font-size: 13px;
+  color: #b7bac0;
+  min-height: 18px;
+  margin-top: 4px;
+}
+
+#search-status.not-found {
+  color: #ff8fa3;
+}
+
+#search-status.found {
+  color: #ffd60a;
+}
+
+#options {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  color: #d6d8dc;
+}
+
+#options select,
+#options input[type="range"] {
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+#options input[type="checkbox"] {
+  margin-right: 4px;
+}
+
+#customize-toggle {
+  margin-left: auto;
+  background: #444a55;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#customize-panel {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.customize-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: #d6d8dc;
+}
+
+.customize-label {
+  width: 38px;
+  flex-shrink: 0;
+  font-weight: 600;
+  color: #f4f4f4;
+}
+
+.customize-group input[type="color"] {
+  width: 30px;
+  height: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.customize-slider {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.customize-slider input[type="range"] {
+  width: 80px;
+}
+
+#panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#panel-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f4f4f4;
+  border: none;
+  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+#panel-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#panel-body {
+  margin-top: 8px;
+}
+
+#top-right-panels {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 240px;
+  z-index: 5;
+}
+
+#runner-info-panel,
+#leaderboard-panel {
+  background: rgba(20, 22, 26, 0.85);
+  backdrop-filter: blur(6px);
+  color: #f4f4f4;
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  font-size: 13px;
+}
+
+#runner-info-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffd60a;
+}
+
+#runner-info-bib {
+  color: #b7bac0;
+  margin-bottom: 8px;
+}
+
+.runner-info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 0;
+}
+
+.runner-info-row span:first-child {
+  color: #b7bac0;
+}
+
+.runner-info-row span:last-child {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+#leaderboard-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.leaderboard-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  white-space: nowrap;
+}
+
+.leaderboard-swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.leaderboard-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.leaderboard-distance {
+  font-variant-numeric: tabular-nums;
+  color: #b7bac0;
+}
