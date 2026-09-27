@@ -231,6 +231,7 @@ map.on("load", () => {
 
   map.addControl(overlay);
   applyMapFilter(); // apply default tint/opacity settings once the canvas exists
+  mapBgColorEl.addEventListener("input", applyMapBackground);
   renderCheckpointMarkers(); // distance labels at each checkpoint, from checkpoints.json
 });
 
@@ -271,6 +272,7 @@ const followToggleEl = document.getElementById("follow-toggle");
 const mapStyleEl = document.getElementById("map-style");
 const mapHueEl = document.getElementById("map-hue");
 const mapOpacityEl = document.getElementById("map-opacity");
+const mapBgColorEl = document.getElementById("map-bg-color");
 const customizeToggleEl = document.getElementById("customize-toggle");
 const customizePanelEl = document.getElementById("customize-panel");
 const dotColorEl = document.getElementById("dot-color");
@@ -640,6 +642,7 @@ clearHighlightEl.addEventListener("click", () => {
 mapStyleEl.addEventListener("change", applyMapFilter);
 mapHueEl.addEventListener("input", applyMapFilter);
 mapOpacityEl.addEventListener("input", applyMapFilter);
+mapBgColorEl.addEventListener("input", applyMapBackground);
 
 customizeToggleEl.addEventListener("click", () => {
   customizePanelEl.hidden = !customizePanelEl.hidden;
@@ -677,3 +680,8 @@ pathWidthEl.addEventListener("input", () => {
 pathOpacityEl.addEventListener("input", () => {
   appearance.pathOpacity = Math.round((Number(pathOpacityEl.value) / 100) * 255);
 });
+
+// Set background map colour
+function applyMapBackground() {
+  document.getElementById("map").style.backgroundColor = mapBgColorEl.value;
+}
