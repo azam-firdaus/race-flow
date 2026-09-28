@@ -11,6 +11,7 @@ html, body {
 #map {
   position: absolute;
   inset: 0;
+  z-index: 0;
 }
 
 #back-link {
@@ -51,6 +52,7 @@ html, body {
   left: 16px;
   bottom: 16px;
   right: 16px;
+  z-index: 10;
   max-width: 520px;
   max-height: 80vh;
   overflow-y: auto;

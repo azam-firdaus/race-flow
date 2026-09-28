@@ -13,12 +13,12 @@ html, body {
 main {
   max-width: 640px;
   margin: 0 auto;
-  padding: 40px 20px 80px;
+  padding: 40px 20px;
 }
 
 h1 {
-  font-size: 26px;
-  margin-bottom: 24px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 #marathon-list {
@@ -29,31 +29,30 @@ h1 {
 
 .marathon-card {
   display: block;
-  text-decoration: none;
-  color: inherit;
-  background: #1e2128;
-  border: 1px solid #2b2f38;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   padding: 16px 18px;
-  transition: border-color 0.15s, transform 0.15s;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
 }
 
 .marathon-card:hover {
-  border-color: #e63946;
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .marathon-name {
   font-size: 17px;
   font-weight: 600;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .marathon-meta {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   font-size: 13px;
-  color: #9aa0ab;
+  color: #b7bac0;
 }
 
 .empty,

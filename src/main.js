@@ -215,7 +215,7 @@ const map = new maplibregl.Map({
   zoom: 14,
 });
 
-map.addControl(new maplibregl.NavigationControl(), "top-left");
+map.addControl(new maplibregl.NavigationControl(), "top-right");
 
 const overlay = new MapboxOverlay({ layers: [] });
 
@@ -230,9 +230,8 @@ map.on("load", () => {
   );
 
   map.addControl(overlay);
-  applyMapFilter(); // apply default tint/opacity settings once the canvas exists
-  mapBgColorEl.addEventListener("input", applyMapBackground);
-  renderCheckpointMarkers(); // distance labels at each checkpoint, from checkpoints.json
+  applyMapFilter(); // tint/opacity
+  applyMapBackground(); // background color shown through at low opacity
 });
 
 // --- Map tint: CSS filter applied to maplibre's own canvas only, so the
@@ -251,6 +250,11 @@ function applyMapFilter() {
   const hue = Number(mapHueEl.value);
   canvas.style.filter = hue ? `${preset} hue-rotate(${hue}deg)`.trim() : preset;
   canvas.style.opacity = String(Number(mapOpacityEl.value) / 100);
+}
+
+// Set background map colour
+function applyMapBackground() {
+  document.getElementById("map").style.backgroundColor = mapBgColorEl.value;
 }
 
 // ---------------------------------------------------------------------------
@@ -468,6 +472,7 @@ function render(nowWallMs) {
       lineWidthUnits: "pixels",
       getLineWidth: 1,
       stroked: true,
+      parameters: { depthTest: false },
       updateTriggers: {
         getPosition: raceTimeMs,
         getFillColor: `${appearance.dotColor.join(",")}-${appearance.dotOpacity}`,
@@ -490,6 +495,7 @@ function render(nowWallMs) {
           getRadius: (d) => 2 + (1 - d.age) * 5,
           radiusUnits: "pixels",
           getFillColor: (d) => [...HIGHLIGHT_COLORS[0], Math.round((1 - d.age) * 180)],
+          parameters: { depthTest: false },
           updateTriggers: { getPosition: raceTimeMs },
         })
       );
@@ -508,6 +514,7 @@ function render(nowWallMs) {
           lineWidthUnits: "pixels",
           getLineWidth: 2,
           stroked: true,
+          parameters: { depthTest: false },
           updateTriggers: { getPosition: raceTimeMs, getRadius: pulse },
         })
       );
@@ -522,7 +529,7 @@ function render(nowWallMs) {
     const secondaryPoints = [];
     for (let i = 1; i < highlightedRunners.length; i++) {
       const r = activeRunners.find((a) => a.runnerId === highlightedRunners[i]);
-      if (r) secondaryPoints.push({ position: r.position, color: colorForHighlightIndex(i) });
+      if (r) secondaryPoints.push({ position: r.position, color: colorForHighlightIndex(i), runnerId: highlightedRunners[i] });
     }
     if (secondaryPoints.length > 0) {
       layers.push(
@@ -537,6 +544,7 @@ function render(nowWallMs) {
           lineWidthUnits: "pixels",
           getLineWidth: 2,
           stroked: true,
+          parameters: { depthTest: false },
           updateTriggers: { getPosition: raceTimeMs },
         })
       );
@@ -649,12 +657,15 @@ customizeToggleEl.addEventListener("click", () => {
   customizeToggleEl.textContent = customizePanelEl.hidden ? "Customize" : "Hide customize";
 });
 
-panelToggleEl.addEventListener("click", () => {
-  const collapsed = !panelBodyEl.hidden;
+function setPanelCollapsed(collapsed) {
   panelBodyEl.hidden = collapsed;
   panelToggleEl.textContent = collapsed ? "+" : "\u2212";
   panelToggleEl.title = collapsed ? "Expand" : "Minimize";
-});
+}
+panelToggleEl.addEventListener("click", () => setPanelCollapsed(!panelBodyEl.hidden));
+
+// On phones, start with the control panel minimized so the map gets the screen.
+if (window.matchMedia("(max-width: 640px)").matches) setPanelCollapsed(true);
 
 // --- Dot appearance: read straight into the `appearance` object; render()
 //     picks these up on the very next animation frame, no extra plumbing. ---
@@ -680,8 +691,3 @@ pathWidthEl.addEventListener("input", () => {
 pathOpacityEl.addEventListener("input", () => {
   appearance.pathOpacity = Math.round((Number(pathOpacityEl.value) / 100) * 255);
 });
-
-// Set background map colour
-function applyMapBackground() {
-  document.getElementById("map").style.backgroundColor = mapBgColorEl.value;
-}
